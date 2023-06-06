@@ -1,0 +1,85 @@
+<!-- [ Sidebar Menu ] start -->
+<nav class="pc-sidebar">
+  <div class="navbar-wrapper">
+    <div class="m-header">
+      <a href="index.html" class="b-brand">
+        <!-- ========   Change your logo from here   ============ -->
+        <img src="{{ url_for('static', filename='assets/images/logo-dark.jpg') }}" alt="" class="logo logo-lg" />
+      </a>
+    </div>
+    <div class="navbar-content">
+      <ul class="pc-navbar">
+        <li class="pc-item pc-caption">
+          <label>Dashboard</label>
+          <i class="ti ti-news"></i>
+        </li>
+        <li class="pc-item">
+          <a href="{{ url_for('home_blueprint.index') }}" class="pc-link"><span class="pc-micon"><i
+                class="ti ti-brand-chrome"></i></span><span class="pc-mtext">Container Statistics</span></a></li>
+                <li class="pc-item">
+                  <a href="{{ url_for('home_blueprint.data') }}" class="pc-link"><span class="pc-micon"><i
+                        class="ti ti-brand-chrome"></i></span><span class="pc-mtext">KPI Dashboard</span></a></li>
+                <li class="pc-item pc-caption">
+                  <label>Master Data</label>
+                  <i class="ti ti-news"></i>
+                </li>           
+          <!-- <li class="pc-item hasmenu">
+          <a href="#!" class="pc-link">
+            <span class="pc-micon"><i class="ti ti-key"></i></span>
+            <span class="pc-mtext">Master Data</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a> -->
+            <ul class="pc-submenu">
+              <li class="pc-item">
+                <a href="{{ url_for('home_blueprint.vesselmaster') }}" class="pc-link">Vessel Master</a></li>
+                <li class="pc-item">
+                  <a href="{{ url_for('home_blueprint.containerstock') }}" class="pc-link">Container Stock</a></li>
+                  <li class="pc-item">
+                    <a href="{{ url_for('home_blueprint.shippingline') }}" class="pc-link">Shipping Line Allocation</a></li>
+                    <li class="pc-item">
+                      <a href="{{ url_for('home_blueprint.schedule') }}" class="pc-link">Vessel Schedule</a></li>
+            </ul>
+        </li>
+        <li class="pc-item pc-caption">
+          <label>Input Data</label>
+          <i class="ti ti-news"></i>
+        </li>
+        <li class="pc-item"><a class="pc-link" href="{{ url_for('home_blueprint.sample_page') }}">Projection</a></li>
+        
+
+          <li class="pc-item pc-caption">
+            <label>Allocations</label>
+            <i class="ti ti-news"></i>
+          </li>           
+    <!-- <li class="pc-item hasmenu">
+    <a href="#!" class="pc-link">
+      <span class="pc-micon"><i class="ti ti-key"></i></span>
+      <span class="pc-mtext">Master Data</span><span class="pc-arrow"><i class="ti ti-chevron-right"></i></span></a> -->
+      <ul class="pc-submenu">
+        <li class="pc-item">
+          <a href="{{ url_for('home_blueprint.port') }}" class="pc-link">Port Allocation</a></li>
+          <li class="pc-item">
+            <a href="{{ url_for('home_blueprint.container') }}" class="pc-link">Container Allocation</a></li>
+                 </ul>
+
+          
+        <li class="pc-item pc-caption">
+          <label>User Pages</label>
+          <i class="ti ti-news"></i>
+        </li>
+        <ul class="pc-submenu">
+                    {% if current_user.is_authenticated %}
+              <li class="pc-item"><a class="pc-link" href="{{ url_for('authentication_blueprint.logout') }}">Logout</a></li>
+            {% else %}
+              <li class="pc-item"><a class="pc-link" href="{{ url_for('authentication_blueprint.login') }}">Login</a></li>
+              <li class="pc-item"><a class="pc-link" href="{{ url_for('authentication_blueprint.register') }}">Register</a></li>
+            {% endif %}
+
+          </ul>
+        </li>
+               <li class="pc-item pc-caption">
+          
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+<!-- [ Sidebar Menu ] end -->

@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html' %}
+{% include 'includes/styles.html' %}
+{% block title %} Sample Page {% endblock title %}
+{% block content %}
+  <!-- [ Main Content ] start -->
+  <div class="pc-container">
+    <!-- <div class="pc-content"> -->
+      <!-- <div class="row "  > -->
+        <div class="col-12 ag-theme-alpine" id="myGrid">
+
+        </div>
+        
+      <!-- </div> -->
+      
+   
+    <!-- </div> -->
+  </div>
+  <!-- [ Main Content ] end -->
+{% endblock content %}
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+<script  src="{{ url_for('static', filename='assets/js/table.js') }}"></script>
+<script>
+  data = {{projection|tojson}}
+  header = {{header|tojson}}
+  console.log(data)
+  displayFunc(data, header)
+</script>
+{% endblock extra_js %}

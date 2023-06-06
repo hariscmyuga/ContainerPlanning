@@ -1,0 +1,180 @@
+{% extends 'layouts/base.html' %}
+<!-- {% include 'includes/scripts.html' %} -->
+
+
+{% block title %} Port Allocation {% endblock title %}
+
+{% block extrastyle %}
+    <!-- {{super}} -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/custom.css') }}">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/handsontable@7.2.2/dist/handsontable.full.min.css" rel="stylesheet" media="screen"> -->
+{% endblock extrastyle%}
+
+
+{% block content %}
+  <!-- [ Main Content ] start -->
+  <div class="pc-container">
+    <!-- <div class="pc-content"> -->
+     <div class="tabs">
+<div class="tab">
+  <button class="tablinks active" onclick="openCity(event, 'Home')" >Ruwais ADT View</button>
+  <button class="tablinks" onclick="openCity(event, 'Gallery')">Ruwais CSP View</button>
+  <button class="tablinks" onclick="openCity(event, 'About')">Jebel Ali View</button>
+  <!-- <button class="tablinks" onclick="openCity(event, 'Contact')">Contact</button> -->
+</div>
+
+<div id="Home" class="tabcontent" style="display:block">
+  <!-- <div id="example_one"></div> -->
+  <div class="col-12 ag-theme-alpine" id="myGridone"></div>
+</div>
+
+<div id="Gallery" class="tabcontent">
+  <!-- <div id="example_two"></div> -->
+  <div class="col-12 ag-theme-alpine" id="myGridtwo"></div>
+</div>
+
+<div id="About" class="tabcontent">
+  <!-- <div id="example_three"></div> -->
+  <div class="col-12 ag-theme-alpine" id="myGridthree"></div>
+</div>
+
+</div>
+
+    <!-- </div> -->
+</div>
+  <!-- [ Main Content ] end -->
+{% endblock content %}
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/handsontable@7.2.2/dist/handsontable.full.min.js"></script> -->
+<script  src="{{ url_for('static', filename='assets/js/tab.js') }}"></script>
+<script  src="{{ url_for('static', filename='assets/js/output.js') }}"></script>
+<script>
+//   var data = [
+//   ['', 'Ford', 'Tesla', 'Toyota', 'Honda'],
+//   ['2017', 10, 11, 12, 13],
+//   ['2018', 20, 11, 14, 13],
+//   ['2019', 30, 15, 12, 13]
+// ];
+
+// var container = document.getElementById('example_one');
+// var hot = new Handsontable(container, {
+//   data: data,
+//   // rowHeaders: true,
+//   // colHeaders: true,
+//   filters: true,
+//   dropdownMenu: true,
+//   licenseKey: 'non-commercial-and-evaluation',
+// });
+// var data1 = [
+//   ['', 'Ford', 'Tesla', 'Toyota', 'Honda'],
+//   ['2017', 10, 11, 12, 13],
+//   ['2018', 20, 11, 14, 13],
+//   ['2019', 30, 15, 12, 13]
+// ];
+
+// var container1 = document.getElementById('example_two');
+// var hot1 = new Handsontable(container1, {
+//   data: data1,
+//   // rowHeaders: true,
+//   // colHeaders: true,
+//   // filters: true,
+//   // dropdownMenu: true,
+//   licenseKey: 'non-commercial-and-evaluation',
+// });
+// var data2 = [
+//   ['', 'Ford', 'Tesla', 'Toyota', 'Honda'],
+//   ['2017', 10, 11, 12, 13],
+//   ['2018', 20, 11, 14, 13],
+//   ['2019', 30, 15, 12, 13]
+// ];
+
+// var container2 = document.getElementById('example_three');
+// var hot2 = new Handsontable(container2, {
+//   data: data2,
+//   // rowHeaders: true,
+//   // colHeaders: true,
+//   // filters: true,
+//   // dropdownMenu: true,
+//   licenseKey: 'non-commercial-and-evaluation',
+// });
+  var data_grid = [
+    {Vessels: 'ADT - Al Reem', Voyage:  'Al Reem Call  1', Date_of_Sailing: '24-05-2023', BRG_40: 720, MSC_40: 240,MSK_20:230,Total:1200},
+    {Vessels: 'ADT - Al Sadar', Voyage:  'Al Sadar Call  2', Date_of_Sailing: '26-05-2023', BRG_40: 240, MSC_40: 80,MSK_20:80,Total:400},
+    {Vessels: 'ADT - Al Bazam', Voyage:  'Al Sadar Call  2', Date_of_Sailing: '26-05-2023', BRG_40: 240, MSC_40:80,MSK_20:80,Total:400},
+    {Vessels: 'ADT - Al Reem', Voyage:  'Al Reem Call  2', Date_of_Sailing: '27-05-2023', BRG_40: 720,MSC_40:240,MSK_20:240,Total:1200},
+    {Vessels: 'ADT - Al Sadar', Voyage:  'Al Sadar Call  3', Date_of_Sailing: '28-05-2023', BRG_40: 240,MSC_40:80,MSK_20:80,Total:400},
+    {Vessels: 'ADT - Al Bazam', Voyage:  'Al Bazam Call  3', Date_of_Sailing: '28-05-2023', BRG_40: 240,MSC_40:80,MSK_20:80,Total:400},
+    {Vessels: 'ADT - Al Reem', Voyage:  'Al Reem Call  3', Date_of_Sailing: '30-05-2023', BRG_40: 100,MSC_40:285,MSK_20:245,Total:735},
+    {Vessels: 'Total',  BRG_40: 2500,MSC_40:1150,MSK_20:1075,Total:4735}
+]
+    var data_grid_1 = []
+    var header_1 = [
+    { field: "Vessels" },
+    { field: "Voyage" },
+    { field: "Date_of_Sailing" },
+    { field: "CMA_20", width: 120 },
+    { field: "CMA_40" , width: 120},
+    { field: "COSCO_20", width: 120 },
+    { field: "COSCO_40", width: 120 },
+    { field: "EVG_20" , width: 120},
+    { field: "EVG_40", width: 120 },
+    { field: "HMM_20", width: 120 },
+    { field: "HMM_40" , width: 120},
+    { field: "OOC_20", width: 120 },
+    { field: "OOC_40", width: 120 },
+    { field: "ONE_KANDO_20", width: 120 },
+    { field: "ONE_KANDO_40", width: 120 },
+    { field: "YML_20", width: 120 },
+    { field: "YML_40" , width: 120},
+    { field: "MSK_20", width: 120 },
+    { field: "MSK_40" , width: 120}
+  ]
+  
+  var header = [
+    { field: "Vessels" },
+    { field: "Voyage" },
+    { field: "Date_of_Sailing" },
+    { field: "BRG_40", width: 120 },
+    { field: "HAP_20" , width: 120},
+    { field: "HAP_40" , width: 120},
+    { field: "MSC_20" , width: 120},
+    { field: "MSC_40" , width: 120},
+    { field: "MSK_20" , width: 120},
+    { field: "MSK_40" , width: 120},
+    { field: "Total" },
+  ]
+  
+  // displayFunc(data, header, "#"+"myGridone")
+  // displayFunc(data, header, "#"+"myGridtwo")
+  // displayFunc(data, header, "#"+"myGridthree")
+ var gridOptions = {
+  defaultColDef: {
+    resizable: true,
+  },
+        columnDefs: header,
+        rowData: data_grid
+      };
+  var gridDiv = document.querySelector('#myGridone');
+    new agGrid.Grid(gridDiv, gridOptions);
+    var gridOptions1 = {
+      defaultColDef: {
+    resizable: true,
+  },
+        columnDefs: header,
+        rowData: data_grid
+      };
+  var gridDiv1 = document.querySelector('#myGridtwo');
+    new agGrid.Grid(gridDiv1, gridOptions1);
+    var gridOptions2 = {
+      defaultColDef: {
+    resizable: true,
+  },
+        columnDefs: header_1,
+        rowData: data_grid_1
+      };
+  var gridDiv2 = document.querySelector('#myGridthree');
+    new agGrid.Grid(gridDiv2, gridOptions2);
+</script>
+{% endblock extra_js %}
+
